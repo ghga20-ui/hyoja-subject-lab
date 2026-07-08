@@ -272,7 +272,7 @@
     <div class="home-hd">
       <span class="badge">효자고 교육과정 박람회</span>
       <h1>과목 체험관</h1>
-      <p>한 과목 5분, 첫 수업을 미리 겪어 보는 체험이에요.<br><b>10과목 체험 + 성향 해금</b>이면 <b>응모하고 상품</b>을 받을 수 있어요! 🎁</p>
+      <p>한 과목 5분, 첫 수업을 미리 겪어 보는 체험이에요.<br><b>10과목 체험 + 내 성향 유형 확인</b>이면 <b>응모하고 상품</b>을 받을 수 있어요! 🎁</p>
     </div>
     <div class="modebar">
       <button id="mg1" onclick="setMode('g1')">1학년<br><small>내가 신청할 2학년 과목</small></button>
@@ -355,7 +355,7 @@ function esc(t){ return String(t==null?'':t); }
 /* ---- 상품 응모 ---- */
 const ENTRY = {
   minSubjects: 10,          // 도감 10과목 이상
-  needUnlock: true,         // 성향 해금(서로 다른 3계열) 필수
+  needUnlock: true,         // 성향 유형 확인(서로 다른 3계열 체험) 필수
   formUrl: 'https://docs.google.com/forms/d/e/1FAIpQLSeDQmbq94j8UyB7vi8b1xLZzjlKEygO8eAKrEpePHA9deNALw/viewform?usp=pp_url&entry.194611275={code}&entry.140134934={count}&entry.1009936650={areas}&entry.123307934={type}',
 };
 function entryState(){
@@ -633,7 +633,7 @@ function renderSummary(){
   const seen={}; const items=SUBJ.filter(s=>done[s.name]&&!seen[s.name]&&(seen[s.name]=1));
   const st=entryState();
   const entryCard = st.eligible
-    ? `<div class="entrybox gold">${IC.gift}<div><b>상품 응모 자격 달성!</b><br><span class="entrysub">도감 ${st.count}과목 · 서로 다른 ${st.areas}계열 · 성향 해금 완료</span></div>
+    ? `<div class="entrybox gold">${IC.gift}<div><b>상품 응모 자격 달성!</b><br><span class="entrysub">도감 ${st.count}과목 · 서로 다른 ${st.areas}계열 · 성향 유형 확인 완료</span></div>
         <button class="mact" onclick="submitEntry()">응모하기</button></div>
        <div class="notehint" id="entryPanel">응모 방법은 선생님이 안내해요 — 구글 폼이 열리면 <b>학번·이름만</b> 적으면 되고(나머지는 자동), 접수처 방식이면 <b>이 달성 화면을 보여주면</b> 됩니다.</div>`
     : `<div class="entrybox soft">${IC.gift}<div><b>상품 응모까지</b><br><span class="entrysub">과목 <b>${st.count}/${ENTRY.minSubjects}</b> · 서로 다른 3계열 ${st.unlocked?'✓ 완료':`<b>${Math.min(st.areas,3)}/3</b>`}</span></div>
